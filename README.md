@@ -4,7 +4,7 @@ Android app that forwards incoming SMS to Telegram.
 
 Get the latest signed APK from [Releases](https://github.com/MRdevX/BayQush/releases/latest).
 
-<img width="576" height="1280" alt="photo_2026-08-31 18 29 51" src="https://github.com/user-attachments/assets/331d3ca1-22f5-4a56-b733-086babbab454" />
+<img width="172" height="384" alt="photo_2026-08-31 18 29 51" src="https://github.com/user-attachments/assets/331d3ca1-22f5-4a56-b733-086babbab454" />
 
 ## Setup
 
