@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TeleHoot"
+rootProject.name = "BayQush"
 include(":app")

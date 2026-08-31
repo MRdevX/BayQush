@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "me.mrashidi.telehoot"
+    namespace = "me.mrashidi.bayqush"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "me.mrashidi.telehoot"
+        applicationId = "me.mrashidi.bayqush"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

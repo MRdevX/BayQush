@@ -1,4 +1,4 @@
-package me.mrashidi.telehoot
+package me.mrashidi.bayqush
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue

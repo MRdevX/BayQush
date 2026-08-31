@@ -1,9 +1,9 @@
-package me.mrashidi.telehoot
+package me.mrashidi.bayqush
 
 import android.content.Context
 
 object Prefs {
-    private const val FILE = "telehoot"
+    private const val FILE = "bayqush"
     private const val TOKEN = "token"
     private const val CHAT_ID = "chat_id"
 

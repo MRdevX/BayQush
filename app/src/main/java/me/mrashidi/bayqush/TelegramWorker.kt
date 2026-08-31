@@ -1,4 +1,4 @@
-package me.mrashidi.telehoot
+package me.mrashidi.bayqush
 
 import android.content.Context
 import androidx.work.BackoffPolicy

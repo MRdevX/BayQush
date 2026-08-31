@@ -1,4 +1,4 @@
-package me.mrashidi.telehoot.ui.theme
+package me.mrashidi.bayqush.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

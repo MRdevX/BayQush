@@ -1,4 +1,4 @@
-package me.mrashidi.telehoot
+package me.mrashidi.bayqush
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -31,7 +31,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
-import me.mrashidi.telehoot.ui.theme.TeleHootTheme
+import me.mrashidi.bayqush.ui.theme.TeleHootTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,7 +109,7 @@ fun SetupScreen(modifier: Modifier = Modifier) {
                     status = "Token and chat_id required"
                     return@Button
                 }
-                TelegramWorker.enqueue(context, "TeleHoot test")
+                TelegramWorker.enqueue(context, "BayQush test")
                 status = "Test send queued"
             },
             modifier = Modifier.fillMaxWidth(),
