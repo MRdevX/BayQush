@@ -1,17 +1,20 @@
 package me.mrashidi.telehoot
 
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
-import org.junit.Assert.*
-
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun formatSms_joinsFromAndBody() {
+        assertEquals("From: +1\n\nhello", formatSms("+1", "hello"))
+    }
+
+    @Test
+    fun formatSms_truncatesAt4096() {
+        val body = "x".repeat(5000)
+        val out = formatSms("a", body)
+        assertEquals(4096, out.length)
+        assertTrue(out.startsWith("From: a\n\n"))
     }
 }
