@@ -2,6 +2,8 @@
 
 Android app that forwards incoming SMS to Telegram.
 
+Get the latest signed APK from [Releases](https://github.com/MRdevX/BayQush/releases/latest).
+
 ## Setup
 
 1. Allow SMS access.
@@ -22,4 +24,4 @@ Requires JDK 21 and the Android SDK. minSdk 24.
 ./gradlew assembleDebug
 ```
 
-Pushes to `main` bump the version and publish a signed APK on the [Releases](https://github.com/MRdevX/BayQush/releases) page.
+Pushes to `main` bump the version and attach a signed APK to the GitHub release.
