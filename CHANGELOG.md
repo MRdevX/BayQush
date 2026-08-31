@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.0.2](https://github.com/MRdevX/BayQush/compare/18db6efed659aa4998ce6aff7af105920b008525..v0.0.2) - 2026-08-31
+#### Documentation
+- link to the latest APK release - ([11bdfcf](https://github.com/MRdevX/BayQush/commit/11bdfcfa6900603a3d73c312d6d1ba759b1f2d6e)) - Mahdi Rashidi, Cursor
+- add a brief project README - ([18db6ef](https://github.com/MRdevX/BayQush/commit/18db6efed659aa4998ce6aff7af105920b008525)) - Mahdi Rashidi, Cursor
+
+- - -
+
 ## [v0.0.1](https://github.com/MRdevX/BayQush/compare/v0.0.0..v0.0.1) - 2026-08-31
 #### Bug Fixes
 - force a patch bump when auto release has nothing to bump - ([af207d0](https://github.com/MRdevX/BayQush/commit/af207d079fd000856a52dc0e88371ca79fdcf773)) - Mahdi Rashidi, Cursor
