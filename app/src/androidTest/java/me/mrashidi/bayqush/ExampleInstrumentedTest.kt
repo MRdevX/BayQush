@@ -1,4 +1,4 @@
-package me.mrashidi.telehoot
+package me.mrashidi.bayqush
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("me.mrashidi.telehoot", appContext.packageName)
+        assertEquals("me.mrashidi.bayqush", appContext.packageName)
     }
 }

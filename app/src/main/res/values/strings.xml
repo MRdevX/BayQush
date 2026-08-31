@@ -1,3 +1,70 @@
 <resources>
-    <string name="app_name">TeleHoot</string>
+    <string name="app_name">BayQush</string>
+    <string name="setup_title">Forward SMS to Telegram</string>
+    <string name="setup_subtitle">Add your bot, choose which SMS to forward, then allow background so it keeps working.</string>
+
+    <string name="status_forwarding_on">Forwarding on</string>
+    <string name="status_background_restricted">Background restricted</string>
+    <string name="status_background_restricted_sub">Forwarding may stop when the screen is off</string>
+    <string name="status_all_sms">All SMS</string>
+    <string name="status_selected_count">%d senders</string>
+    <string name="status_selected_one">1 sender</string>
+    <string name="send_test">Send test</string>
+    <string name="test_message">BayQush test</string>
+
+    <string name="section_telegram">Telegram</string>
+    <string name="bot_token">Bot token</string>
+    <string name="bot_token_support">From BotFather</string>
+    <string name="chat_id">Chat ID</string>
+    <string name="chat_id_support">Your user or channel ID, e.g. −100…</string>
+    <string name="how_to_get_these">How to get these</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="telegram_connected">Telegram connected</string>
+    <string name="telegram_connected_sub">Hidden. Edit to change token or chat ID.</string>
+    <string name="error_token_required">Token required</string>
+    <string name="error_chat_id_required">Chat ID required</string>
+    <string name="error_credentials_required">Token and chat ID required</string>
+
+    <string name="help_title">How to connect Telegram</string>
+    <string name="help_step_1_title">Create a bot</string>
+    <string name="help_step_1_body">Open Telegram and message @BotFather. Send /newbot and follow the prompts.</string>
+    <string name="help_step_2_title">Copy the token</string>
+    <string name="help_step_2_body">BotFather replies with a token. Paste it into Bot token.</string>
+    <string name="help_step_3_title">Find the chat ID</string>
+    <string name="help_step_3_body">Message your bot, or add it to a channel. Use your user ID, or the channel ID that starts with −100.</string>
+
+    <string name="sms_needed">SMS access is needed to list senders and forward messages.</string>
+    <string name="grant_sms">Allow SMS</string>
+
+    <string name="section_forwarding">What to forward</string>
+    <string name="forward_all">All SMS</string>
+    <string name="forward_chosen">Choose senders</string>
+    <string name="forward_all_hint">Includes banks, ads, government, and anything else that texts this phone.</string>
+    <string name="selected_count">%d selected</string>
+    <string name="add_sender">Add a sender</string>
+    <string name="add_sender_cd">Add sender</string>
+    <string name="refresh_senders_cd">Refresh sender list</string>
+    <string name="empty_inbox">No messages yet. Add a sender, or wait for an SMS.</string>
+    <string name="grant_sms_for_senders">Allow SMS to list senders from your inbox.</string>
+    <string name="sender_inbox_line">%1$d in inbox · %2$s</string>
+    <string name="added_sender">Added</string>
+    <string name="forwarding_all">Forwarding every incoming SMS</string>
+    <string name="forwarding_chosen">Only the senders you pick</string>
+
+    <string name="section_background">Keep running</string>
+    <string name="background_allowed">Background allowed</string>
+    <string name="background_restricted">Background restricted</string>
+    <string name="background_allowed_sub">Needed so forwarding works when the screen is off.</string>
+    <string name="background_restricted_sub">Tap Allow background, then Allow.</string>
+    <string name="allow_background">Allow background</string>
+    <string name="background_settings">Background settings</string>
+    <string name="samsung_hint">On Samsung, also add this app to Never sleeping apps.</string>
+
+    <string name="snackbar_saved">Saved</string>
+    <string name="snackbar_sent">Sent to Telegram</string>
+    <string name="snackbar_sending">Sending…</string>
+    <string name="snackbar_send_failed">Send failed</string>
+    <string name="snackbar_sms_granted">SMS permission granted</string>
+    <string name="snackbar_sms_denied">SMS permission denied</string>
 </resources>
