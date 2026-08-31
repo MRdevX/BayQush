@@ -1,0 +1,21 @@
+from_latest_tag = true
+ignore_merge_commits = true
+ignore_fixup_commits = true
+tag_prefix = "v"
+skip_ci = "[skip ci]"
+branch_whitelist = ["main"]
+
+pre_bump_hooks = [
+    "bash scripts/bump-android-version.sh {{version}}",
+]
+
+[changelog]
+path = "CHANGELOG.md"
+template = "remote"
+remote = "github.com"
+owner = "MRdevX"
+repository = "BayQush"
+
+[commit_types]
+ci = { changelog_title = "Continuous Integration", omit_from_changelog = true }
+chore = { changelog_title = "Miscellaneous", omit_from_changelog = true }
