@@ -95,6 +95,7 @@ fun SetupScreen() {
     var selectedSenders by remember { mutableStateOf(Prefs.senders(context)) }
     var reload by remember { mutableStateOf(0) }
     var batteryOk by remember { mutableStateOf(ignoringBattery(context)) }
+    var editingTelegram by remember { mutableStateOf(!Prefs.configured(context)) }
     val lifecycleOwner = LocalLifecycleOwner.current
     val senderRows = remember(messages, selectedSenders) {
         val inbox = sendersFromInbox(messages)
@@ -185,54 +186,91 @@ fun SetupScreen() {
                     color = scheme.onSurfaceVariant,
                 )
             }
-            item {
-                OutlinedTextField(
-                    value = token,
-                    onValueChange = { token = it },
-                    modifier = Modifier.fillMaxWidth(),
-                    label = { Text("Bot token") },
-                    singleLine = true,
-                    visualTransformation = PasswordVisualTransformation(),
-                )
-            }
-            item {
-                OutlinedTextField(
-                    value = chatId,
-                    onValueChange = { chatId = it },
-                    modifier = Modifier.fillMaxWidth(),
-                    label = { Text("Channel chat_id") },
-                    singleLine = true,
-                )
-            }
-            item {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    Button(
-                        onClick = {
-                            Prefs.save(context, token, chatId)
-                            if (Prefs.configured(context)) {
-                                setStatus("Saved", StatusTone.Ok)
-                            } else {
-                                setStatus("Token and chat_id required", StatusTone.Error)
+            if (editingTelegram) {
+                item {
+                    OutlinedTextField(
+                        value = token,
+                        onValueChange = { token = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text("Bot token") },
+                        singleLine = true,
+                        visualTransformation = PasswordVisualTransformation(),
+                    )
+                }
+                item {
+                    OutlinedTextField(
+                        value = chatId,
+                        onValueChange = { chatId = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text("Channel chat_id") },
+                        singleLine = true,
+                    )
+                }
+                item {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        Button(
+                            onClick = {
+                                Prefs.save(context, token, chatId)
+                                if (Prefs.configured(context)) {
+                                    editingTelegram = false
+                                    setStatus("Saved", StatusTone.Ok)
+                                } else {
+                                    setStatus("Token and chat_id required", StatusTone.Error)
+                                }
+                            },
+                            modifier = Modifier.weight(1f),
+                        ) {
+                            Text("Save")
+                        }
+                        OutlinedButton(
+                            onClick = {
+                                Prefs.save(context, token, chatId)
+                                if (!Prefs.configured(context)) {
+                                    setStatus("Token and chat_id required", StatusTone.Error)
+                                    return@OutlinedButton
+                                }
+                                workId = TelegramWorker.enqueue(context, "BayQush test")
+                                setStatus("Sending…", StatusTone.Neutral)
+                            },
+                            modifier = Modifier.weight(1f),
+                        ) {
+                            Text("Test")
+                        }
+                    }
+                }
+            } else {
+                item {
+                    ListItem(
+                        headlineContent = { Text("Credentials saved") },
+                        supportingContent = { Text("Hidden. Edit to change token or chat_id.") },
+                        trailingContent = {
+                            TextButton(
+                                onClick = {
+                                    token = Prefs.token(context)
+                                    chatId = Prefs.chatId(context)
+                                    editingTelegram = true
+                                },
+                            ) {
+                                Text("Edit")
                             }
                         },
-                        modifier = Modifier.weight(1f),
-                    ) {
-                        Text("Save")
-                    }
+                    )
+                }
+                item {
                     OutlinedButton(
                         onClick = {
-                            Prefs.save(context, token, chatId)
                             if (!Prefs.configured(context)) {
+                                editingTelegram = true
                                 setStatus("Token and chat_id required", StatusTone.Error)
                                 return@OutlinedButton
                             }
                             workId = TelegramWorker.enqueue(context, "BayQush test")
                             setStatus("Sending…", StatusTone.Neutral)
                         },
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         Text("Test")
                     }
