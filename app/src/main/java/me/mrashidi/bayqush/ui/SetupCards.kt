@@ -131,7 +131,7 @@ internal fun StatusCard(
         stringResource(R.string.status_background_restricted)
     }
     val filterLabel = if (forwardAll) {
-        stringResource(R.string.status_everyone)
+        stringResource(R.string.status_all_sms)
     } else if (selectedCount == 1) {
         stringResource(R.string.status_selected_one)
     } else {
@@ -377,15 +377,22 @@ internal fun ForwardingCard(
                             onClick = { onForwardAllChange(true) },
                             shape = SegmentedButtonDefaults.itemShape(index = 0, count = 2),
                         ) {
-                            Text(stringResource(R.string.forward_everyone))
+                            Text(stringResource(R.string.forward_all))
                         }
                         SegmentedButton(
                             selected = !forwardAll,
                             onClick = { onForwardAllChange(false) },
                             shape = SegmentedButtonDefaults.itemShape(index = 1, count = 2),
                         ) {
-                            Text(stringResource(R.string.forward_selected))
+                            Text(stringResource(R.string.forward_chosen))
                         }
+                    }
+                    if (forwardAll) {
+                        Text(
+                            text = stringResource(R.string.forward_all_hint),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
                     }
                     if (!forwardAll) {
                         Text(
@@ -402,10 +409,10 @@ internal fun ForwardingCard(
                                 value = newSender,
                                 onValueChange = onNewSenderChange,
                                 modifier = Modifier.weight(1f),
-                                label = { Text(stringResource(R.string.add_number)) },
+                                label = { Text(stringResource(R.string.add_sender)) },
                                 singleLine = true,
                                 keyboardOptions = KeyboardOptions(
-                                    keyboardType = KeyboardType.Phone,
+                                    keyboardType = KeyboardType.Text,
                                     imeAction = ImeAction.Done,
                                 ),
                                 keyboardActions = KeyboardActions(
@@ -418,7 +425,7 @@ internal fun ForwardingCard(
                             IconButton(onClick = onAddSender) {
                                 Icon(
                                     imageVector = Icons.Filled.Add,
-                                    contentDescription = stringResource(R.string.add_number_cd),
+                                    contentDescription = stringResource(R.string.add_sender_cd),
                                 )
                             }
                         }

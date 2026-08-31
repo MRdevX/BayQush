@@ -184,7 +184,7 @@ fun SetupScreen() {
             showSnackbar(
                 snackbarHostState,
                 context.getString(
-                    if (value) R.string.forwarding_everyone else R.string.forwarding_selected,
+                    if (value) R.string.forwarding_all else R.string.forwarding_chosen,
                 ),
             )
         }
@@ -196,7 +196,7 @@ fun SetupScreen() {
             forwardAll = all
         }
         scope.launch {
-            showSnackbar(snackbarHostState, context.getString(R.string.forwarding_selected))
+            showSnackbar(snackbarHostState, context.getString(R.string.forwarding_chosen))
         }
     }
 

@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">BayQush</string>
     <string name="setup_title">Forward SMS to Telegram</string>
-    <string name="setup_subtitle">Add your bot, choose who to forward, then allow background so it keeps working.</string>
+    <string name="setup_subtitle">Add your bot, choose which SMS to forward, then allow background so it keeps working.</string>
 
     <string name="status_forwarding_on">Forwarding on</string>
     <string name="status_background_restricted">Background restricted</string>
     <string name="status_background_restricted_sub">Forwarding may stop when the screen is off</string>
-    <string name="status_everyone">Everyone</string>
+    <string name="status_all_sms">All SMS</string>
     <string name="status_selected_count">%d senders</string>
     <string name="status_selected_one">1 sender</string>
     <string name="send_test">Send test</string>
@@ -37,19 +37,20 @@
     <string name="sms_needed">SMS access is needed to list senders and forward messages.</string>
     <string name="grant_sms">Allow SMS</string>
 
-    <string name="section_forwarding">Who to forward</string>
-    <string name="forward_everyone">Everyone</string>
-    <string name="forward_selected">Selected</string>
+    <string name="section_forwarding">What to forward</string>
+    <string name="forward_all">All SMS</string>
+    <string name="forward_chosen">Choose senders</string>
+    <string name="forward_all_hint">Includes banks, ads, government, and anything else that texts this phone.</string>
     <string name="selected_count">%d selected</string>
-    <string name="add_number">Add a number</string>
-    <string name="add_number_cd">Add sender</string>
+    <string name="add_sender">Add a sender</string>
+    <string name="add_sender_cd">Add sender</string>
     <string name="refresh_senders_cd">Refresh sender list</string>
-    <string name="empty_inbox">No messages yet. Add a number, or wait for an SMS.</string>
+    <string name="empty_inbox">No messages yet. Add a sender, or wait for an SMS.</string>
     <string name="grant_sms_for_senders">Allow SMS to list senders from your inbox.</string>
     <string name="sender_inbox_line">%1$d in inbox · %2$s</string>
     <string name="added_sender">Added</string>
-    <string name="forwarding_everyone">Forwarding every incoming SMS</string>
-    <string name="forwarding_selected">Only checked senders</string>
+    <string name="forwarding_all">Forwarding every incoming SMS</string>
+    <string name="forwarding_chosen">Only the senders you pick</string>
 
     <string name="section_background">Keep running</string>
     <string name="background_allowed">Background allowed</string>
