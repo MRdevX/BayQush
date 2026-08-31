@@ -19,6 +19,19 @@ import java.util.concurrent.TimeUnit
 
 fun formatSms(from: String, body: String): String = "From: $from\n\n$body".take(4096)
 
+fun telegramErrorText(raw: String): String {
+    val key = "\"description\":\""
+    val i = raw.indexOf(key)
+    if (i >= 0) {
+        val start = i + key.length
+        val end = raw.indexOf('"', start)
+        if (end > start) {
+            return raw.substring(start, end).removePrefix("Bad Request: ").trim()
+        }
+    }
+    return raw.removePrefix("Telegram ").trim().ifBlank { "Telegram error" }
+}
+
 class TelegramWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
     override fun doWork(): Result {
         val token = Prefs.token(applicationContext)
@@ -34,7 +47,7 @@ class TelegramWorker(context: Context, params: WorkerParameters) : Worker(contex
             Result.success()
         } catch (e: IllegalStateException) {
             Log.e(TAG, e.message ?: "Telegram error")
-            Result.failure(workDataOf(KEY_ERROR to (e.message ?: "Telegram error")))
+            Result.failure(workDataOf(KEY_ERROR to telegramErrorText(e.message ?: "Telegram error")))
         } catch (e: IOException) {
             Log.e(TAG, "network", e)
             Result.retry()

@@ -30,4 +30,11 @@ class ExampleUnitTest {
         assertTrue(!shouldForward("999", forwardAll = false, allowed))
         assertTrue(shouldForward("999", forwardAll = true, allowed))
     }
+
+    @Test
+    fun telegramErrorText_usesDescription() {
+        val raw =
+            """Telegram 400 {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}"""
+        assertEquals("chat not found", telegramErrorText(raw))
+    }
 }
