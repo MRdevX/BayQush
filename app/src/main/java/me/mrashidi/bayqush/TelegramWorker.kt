@@ -9,10 +9,12 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import androidx.work.WorkManager
 import androidx.work.workDataOf
+import android.util.Log
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
+import java.util.UUID
 import java.util.concurrent.TimeUnit
 
 fun formatSms(from: String, body: String): String = "From: $from\n\n$body".take(4096)
@@ -21,23 +23,30 @@ class TelegramWorker(context: Context, params: WorkerParameters) : Worker(contex
     override fun doWork(): Result {
         val token = Prefs.token(applicationContext)
         val chatId = Prefs.chatId(applicationContext)
-        val text = inputData.getString(KEY_TEXT)?.take(4096) ?: return Result.failure()
-        if (token.isBlank() || chatId.isBlank()) return Result.failure()
+        val text = inputData.getString(KEY_TEXT)?.take(4096)
+            ?: return Result.failure(workDataOf(KEY_ERROR to "empty message"))
+        if (token.isBlank() || chatId.isBlank()) {
+            return Result.failure(workDataOf(KEY_ERROR to "Token and chat_id required"))
+        }
 
         return try {
             post(token, chatId, text)
             Result.success()
-        } catch (_: IllegalStateException) {
-            Result.failure()
-        } catch (_: IOException) {
+        } catch (e: IllegalStateException) {
+            Log.e(TAG, e.message ?: "Telegram error")
+            Result.failure(workDataOf(KEY_ERROR to (e.message ?: "Telegram error")))
+        } catch (e: IOException) {
+            Log.e(TAG, "network", e)
             Result.retry()
         }
     }
 
     companion object {
         const val KEY_TEXT = "text"
+        const val KEY_ERROR = "error"
+        private const val TAG = "BayQush"
 
-        fun enqueue(context: Context, text: String) {
+        fun enqueue(context: Context, text: String): UUID {
             val request = OneTimeWorkRequestBuilder<TelegramWorker>()
                 .setInputData(workDataOf(KEY_TEXT to text.take(4096)))
                 .setConstraints(
@@ -48,6 +57,7 @@ class TelegramWorker(context: Context, params: WorkerParameters) : Worker(contex
                 .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 10, TimeUnit.SECONDS)
                 .build()
             WorkManager.getInstance(context).enqueue(request)
+            return request.id
         }
     }
 }

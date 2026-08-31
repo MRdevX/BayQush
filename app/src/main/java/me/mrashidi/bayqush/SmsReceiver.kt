@@ -12,6 +12,7 @@ class SmsReceiver : BroadcastReceiver() {
         val messages = Telephony.Sms.Intents.getMessagesFromIntent(intent) ?: return
         if (messages.isEmpty()) return
         val from = messages.first().displayOriginatingAddress ?: "unknown"
+        if (!Prefs.shouldForward(context, from)) return
         val body = messages.joinToString("") { it.displayMessageBody.orEmpty() }
         TelegramWorker.enqueue(context, formatSms(from, body))
     }
