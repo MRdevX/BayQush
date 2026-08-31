@@ -9,12 +9,33 @@ android {
         version = release(37)
     }
 
+    val keystorePath = providers.environmentVariable("ANDROID_KEYSTORE_PATH")
+    val keystorePassword = providers.environmentVariable("ANDROID_KEYSTORE_PASSWORD")
+    val keyAlias = providers.environmentVariable("ANDROID_KEY_ALIAS")
+    val keyPassword = providers.environmentVariable("ANDROID_KEY_PASSWORD")
+    val hasReleaseSigning =
+        keystorePath.isPresent &&
+            keystorePassword.isPresent &&
+            keyAlias.isPresent &&
+            keyPassword.isPresent
+
+    signingConfigs {
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile = file(keystorePath.get())
+                storePassword = keystorePassword.get()
+                this.keyAlias = keyAlias.get()
+                this.keyPassword = keyPassword.get()
+            }
+        }
+    }
+
     defaultConfig {
         applicationId = "me.mrashidi.bayqush"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = providers.gradleProperty("VERSION_CODE").get().toInt()
+        versionName = providers.gradleProperty("VERSION_NAME").get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -23,6 +44,9 @@ android {
         release {
             optimization {
                 enable = false
+            }
+            if (hasReleaseSigning) {
+                signingConfig = signingConfigs.getByName("release")
             }
         }
     }
