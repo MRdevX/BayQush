@@ -10,6 +10,9 @@ fi
 
 IFS=. read -r major minor patch <<< "$version"
 code=$((major * 10000 + minor * 100 + patch))
+if (( code < 1 )); then
+  code=1
+fi
 
 properties="gradle.properties"
 tmp="$(mktemp)"
